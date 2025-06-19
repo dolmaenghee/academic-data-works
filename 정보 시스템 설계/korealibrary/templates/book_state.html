@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to HTML Table</title>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">도서검색</h1>
+        <form id="book-form" class="mb-4">
+            <div class="form-group">
+                <label for="book_name">도서명:</label>
+                <input type="text" class="form-control" id="book_name">
+            </div>
+            <button type="submit" class="btn btn-primary">조회</button>
+        </form>
+        
+        <button id="load-button" class="btn btn-primary">Load Data</button>
+        
+        <table class="table" id="data-table" style="display:none;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">청구기호</th>
+                    <th scope="col">소장처</th>
+                    <th scope="col">도서명</th>
+                    <th scope="col">도서상태</th>
+                    <th scope="col">대출신청</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 데이터가 여기 삽입될 예정 -->
+            </tbody>
+        </table>
+
+        <table id="approval-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>청구기호</th>
+                    <th>수령처</th>
+                    <th>도서명</th>
+                    <th>신청승인</th>
+                    <th>수령처 변경</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- approval rows will be inserted here -->
+            </tbody>
+        </table>
+
+    </div>
+
+    <!-- Location Modal -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="locationModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">수령처 변경</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>새로운 수령처를 선택하세요:</p>
+                    <select id="newLocationSelect" class="form-control">
+                        <!-- 옵션이 여기 채워질 예정 -->
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveLocationButton">저장</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student ID Modal -->
+    <div class="modal fade" id="studentIdModal" tabindex="-1" role="dialog" aria-labelledby="studentIdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="studentIdModalLabel">학번 입력</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="studentIdInput">학번</label>
+                        <input type="text" class="form-control" id="studentIdInput">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary" id="submitStudentIdButton">제출</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/static/js/book_state.js"></script>
+</body>
+</html>
